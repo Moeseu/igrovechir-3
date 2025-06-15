@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Голосування</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<h1>Пройдіть опитування</h1>
+<form action="/vote" method="post">
+    <div class="question">
+        <p>Чи подобається вам Spring Framework?</p>
+        <label><input type="radio" name="q1" value="yes" required> Так</label>
+        <label><input type="radio" name="q1" value="no"> Ні</label>
+    </div>
+
+    <div class="question">
+        <p>Яка ваша улюблена мова програмування?</p>
+        <label><input type="radio" name="q2" value="java" required> Java</label>
+        <label><input type="radio" name="q2" value="python"> Python</label>
+        <label><input type="radio" name="q2" value="js"> JavaScript</label>
+    </div>
+
+    <button type="submit">Проголосувати</button>
+</form>
+</body>
+</html>
