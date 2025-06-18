@@ -2,6 +2,7 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Голосування</title>
     <style>
         body {
@@ -77,6 +78,66 @@
             color: #666;
             margin-bottom: 30px;
             font-style: italic;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .intro {
+                font-size: 1em;
+            }
+
+            .question {
+                padding: 20px;
+                margin: 15px 0;
+            }
+
+            .question p {
+                font-size: 1.1em;
+            }
+
+            .question label {
+                padding: 6px;
+            }
+
+            input[type="radio"] {
+                transform: scale(1.1);
+            }
+
+            button {
+                padding: 12px 25px;
+                font-size: 1.1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .question {
+                padding: 15px;
+            }
+
+            .question p {
+                font-size: 1em;
+            }
+
+            .question label {
+                font-size: 0.9em;
+            }
+
+            button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
         }
     </style>
 </head>
