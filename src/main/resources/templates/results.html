@@ -1,34 +1,421 @@
 <!DOCTYPE html>
-<html lang="uk" xmlns:th="http://www.thymeleaf.org">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>Результати</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <title>Результати голосування</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        body {
+            font-family: Georgia, serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f3f0;
+            color: #2c2c2c;
+        }
+
+        h1 {
+            text-align: center;
+            color: #8B4513;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .stats-header {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #8B4513, #A0522D);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            min-width: 150px;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        .question-result {
+            background: white;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            border-left: 6px solid #8B4513;
+        }
+
+        .question-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #8B4513;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin: 20px 0;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .option-card {
+            background: #f8f8f8;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #8B4513;
+            transition: transform 0.2s;
+        }
+
+        .option-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .option-name {
+            font-weight: bold;
+            color: #8B4513;
+            margin-bottom: 5px;
+        }
+
+        .option-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .vote-count {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #2c2c2c;
+        }
+
+        .percentage {
+            background: #8B4513;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            margin: 8px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #8B4513, #A0522D);
+            border-radius: 4px;
+            transition: width 0.8s ease;
+        }
+
+        .back-button {
+            background-color: #8B4513;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            cursor: pointer;
+            display: block;
+            margin: 40px auto;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: #A0522D;
+        }
+
+        .winner-badge {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #8B4513;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+    </style>
 </head>
 <body>
-<h1>Результати голосування</h1>
+<h1>🏆 Результати голосування 📊</h1>
+<div class="subtitle">Вечір настолок - що думає наша компанія?</div>
 
-<div class="result-block">
-    <h2>Чи подобається вам Spring Framework?</h2>
-    <p>Всього голосів: <span th:text="${totalQ1}"></span></p>
-    <ul>
-        <li th:each="stat : ${q1Stats}">
-            <span th:text="${stat.key}"></span>: <span th:text="${stat.value}"></span> голосів
-            (<span th:text="${totalQ1 == 0} ? 0 : ${#numbers.formatDecimal(stat.value * 100.0 / totalQ1, 1, 1)}"></span>%)
-        </li>
-    </ul>
+<div class="stats-header">
+    <div class="stat-card">
+        <span class="stat-number" id="totalVotes">127</span>
+        <span class="stat-label">Всього голосів</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-number" id="totalParticipants">32</span>
+        <span class="stat-label">Учасників</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-number">4</span>
+        <span class="stat-label">Питання</span>
+    </div>
 </div>
 
-<div class="result-block">
-    <h2>Яка ваша улюблена мова програмування?</h2>
-    <p>Всього голосів: <span th:text="${totalQ2}"></span></p>
-    <ul>
-        <li th:each="stat : ${q2Stats}">
-            <span th:text="${stat.key}"></span>: <span th:text="${stat.value}"></span> голосів
-            (<span th:text="${totalQ2 == 0} ? 0 : ${#numbers.formatDecimal(stat.value * 100.0 / totalQ2, 1, 1)}"></span>%)
-        </li>
-    </ul>
+<div class="question-result">
+    <div class="question-title">🎯 Яка настільна гра є переоціненою?</div>
+    <div class="chart-container">
+        <canvas id="chart1"></canvas>
+    </div>
+    <div class="options-grid">
+        <div class="option-card">
+            <div class="option-name">🏠 Монополія <span class="winner-badge">👑 ЛІДЕР</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 45%"></div></div>
+            <div class="option-stats">
+                <span class="vote-count">14 голосів</span>
+                <span class="percentage">45%</span>
+            </div>
+        </div>
+        <div class="option-card">
+            <div class="option-name">🃏 Дурень</div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 25%"></div></div>
+            <div class="option-stats">
+                <span class="vote-count">8 голосів</span>
+                <span class="percentage">25%</span>
+            </div>
+        </div>
+        <div class="option-card">
+            <div class="option-name">💻 JavaScript</div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 19%"></div></div>
+            <div class="option-stats">
+                <span class="vote-count">6 голосів</span>
+                <span class="percentage">19%</span>
+            </div>
+        </div>
+        <div class="option-card">
+            <div class="option-name">🔴 UNO</div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 11%"></div></div>
+            <div class="option-stats">
+                <span class="vote-count">4 голоси</span>
+                <span class="percentage">11%</span>
+            </div>
+        </div>
+    </div>
 </div>
-<a href="/">Проголосувати ще раз</a>
+
+<div class="question-result">
+    <div class="question-title">🎮 Ваш стиль гри?</div>
+    <div class="chart-container">
+        <canvas id="chart2"></canvas>
+    </div>
+    <div class="options-grid">
+        <div class="option-card">
+            <div class="option-name">🎉 Головне - веселощі <span class="winner-badge">👑 ЛІДЕР</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 38%"></div></div>
+            <div class="option-stats">
+                <span class="vote-count">12 голосів</span>
+                <span class="percentage">38%</span>
+            </div>
+        </div>
+        <div class="option-card">
+            <div class="option-name">🏆 Граю тільки на перемогу</div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 28%"></div></div>
+            <div class="option-stats">
+                <span class="vote-count">9 голосів</span>
+                <span class="percentage">28%</span>
+            </div>
+        </div>
+        <div class="option-card">
+            <div class="option-name">🧠 Все планую наперед</div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 22%"></div></div>
+            <div class="option-stats">
+                <span class="vote-count">7 голосів</span>
+                <span class="percentage">22%</span>
+            </div>
+        </div>
+        <div class="option-card">
+            <div class="option-name">🌪️ Люблю створювати хаос</div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 12%"></div></div>
+            <div class="option-stats">
+                <span class="vote-count">4 голоси</span>
+                <span class="percentage">12%</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="question-result">
+    <div class="question-title">😤 Що робите, коли програєте?</div>
+    <div class="chart-container">
+        <canvas id="chart3"></canvas>
+    </div>
+    <div class="options-grid">
+        <div class="option-card">
+            <div class="option-name">😄 Сміюся і йду далі <span class="winner-badge">👑 ЛІДЕР</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 41%"></div></div>
+            <div class="option-stats">
+                <span class="vote-count">13 голосів</span>
+                <span class="percentage">41%</span>
+            </div>
+        </div>
+        <div class="option-card">
+            <div class="option-name">🔍 Аналізую свої помилки</div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 28%"></div></div>
+            <div class="option-stats">
+                <span class="vote-count">9 голосів</span>
+                <span class="percentage">28%</span>
+            </div>
+        </div>
+        <div class="option-card">
+            <div class="option-name">🎲 Звинувачую везіння</div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 19%"></div></div>
+            <div class="option-stats">
+                <span class="vote-count">6 голосів</span>
+                <span class="percentage">19%</span>
+            </div>
+        </div>
+        <div class="option-card">
+            <div class="option-name">😈 Планую помсту</div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 12%"></div></div>
+            <div class="option-stats">
+                <span class="vote-count">4 голоси</span>
+                <span class="percentage">12%</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="question-result">
+    <div class="question-title">😠 Найгірший тип гравця?</div>
+    <div class="chart-container">
+        <canvas id="chart4"></canvas>
+    </div>
+    <div class="options-grid">
+        <div class="option-card">
+            <div class="option-name">📱 Той, хто сидить в телефоні <span class="winner-badge">👑 ЛІДЕР</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 34%"></div></div>
+            <div class="option-stats">
+                <span class="vote-count">11 голосів</span>
+                <span class="percentage">34%</span>
+            </div>
+        </div>
+        <div class="option-card">
+            <div class="option-name">👀 Той, хто підглядає</div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 31%"></div></div>
+            <div class="option-stats">
+                <span class="vote-count">10 голосів</span>
+                <span class="percentage">31%</span>
+            </div>
+        </div>
+        <div class="option-card">
+            <div class="option-name">⏰ Той, хто дуже довго думає</div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 22%"></div></div>
+            <div class="option-stats">
+                <span class="vote-count">7 голосів</span>
+                <span class="percentage">22%</span>
+            </div>
+        </div>
+        <div class="option-card">
+            <div class="option-name">📋 Той, хто постійно змінює правила</div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 13%"></div></div>
+            <div class="option-stats">
+                <span class="vote-count">4 голоси</span>
+                <span class="percentage">13%</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<a href="/vote" class="back-button">🎲 Проголосувати ще раз 🎯</a>-->
+
+<script>
+    // Функція для створення кольорових діаграм
+    function createChart(canvasId, data, labels, colors) {
+        const ctx = document.getElementById(canvasId).getContext('2d');
+        return new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: data,
+                    backgroundColor: colors,
+                    borderWidth: 2,
+                    borderColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 20,
+                            font: {
+                                size: 12
+                            }
+                        }
+                    }
+                },
+                animation: {
+                    animateRotate: true,
+                    duration: 1000
+                }
+            }
+        });
+    }
+
+    // Дані для діаграм
+    const colors1 = ['#8B4513', '#A0522D', '#CD853F', '#D2B48C'];
+    const colors2 = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4'];
+    const colors3 = ['#FFD93D', '#FF6B6B', '#6BCF7F', '#4D96FF'];
+    const colors4 = ['#FF4757', '#3742FA', '#2ED573', '#FFA502'];
+
+    // Створюємо діаграми
+    createChart('chart1', [14, 8, 6, 4], ['Монополія', 'Дурень', 'JavaScript', 'UNO'], colors1);
+    createChart('chart2', [12, 9, 7, 4], ['Веселощі', 'На перемогу', 'Планування', 'Хаос'], colors2);
+    createChart('chart3', [13, 9, 6, 4], ['Сміюся', 'Аналізую', 'Звинувачую везіння', 'Планую помсту'], colors3);
+    createChart('chart4', [11, 10, 7, 4], ['В телефоні', 'Підглядає', 'Довго думає', 'Змінює правила'], colors4);
+
+    // Анімація появи прогрес-барів
+    window.addEventListener('load', function() {
+        const progressBars = document.querySelectorAll('.progress-fill');
+        progressBars.forEach((bar, index) => {
+            setTimeout(() => {
+                bar.style.transition = 'width 0.8s ease';
+            }, index * 100);
+        });
+    });
+</script>
 </body>
 </html>

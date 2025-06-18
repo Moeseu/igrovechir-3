@@ -3,25 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <title>Голосування</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        body {
+            font-family: Georgia, serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f3f0;
+            color: #2c2c2c;
+        }
+        h1 {
+            text-align: center;
+            color: #8B4513;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .question {
+            background: white;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-left: 5px solid #8B4513;
+        }
+
+        .question p {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #8B4513;
+        }
+
+        .question label {
+            display: block;
+            margin: 10px 0;
+            padding: 8px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background-color 0.2s;
+        }
+
+        .question label:hover {
+            background-color: #f0f0f0;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+
+        button {
+            background-color: #8B4513;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #A0522D;
+        }
+
+        .intro {
+            text-align: center;
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+    </style>
 </head>
 <body>
-<h1>Пройдіть опитування</h1>
+<h1>🎲 Опитування для вечора настолок 🎯</h1>
+<div class="intro">Дізнаймося більше один про одного через настільні ігри!</div>
+
 <form action="/vote" method="post">
+
     <div class="question">
-        <p>Чи подобається вам Spring?</p>
-        <label><input type="radio" name="q1" value="yes" required> Так</label>
-        <label><input type="radio" name="q1" value="no"> Ні</label>
+        <p>Яка настільна гра є переоціненою?</p>
+        <label><input type="radio" name="q1" value="monopoly" required> Монополія</label>
+        <label><input type="radio" name="q1" value="fool"> Дурень</label>
+        <label><input type="radio" name="q1" value="js"> JavaScript (це не гра, але все одно)</label>
+        <label><input type="radio" name="q1" value="uno"> UNO</label>
     </div>
 
     <div class="question">
-        <p>Яка ваша улюблена мова програмування?</p>
-        <label><input type="radio" name="q2" value="java" required> Java</label>
-        <label><input type="radio" name="q2" value="python"> Python</label>
-        <label><input type="radio" name="q2" value="js"> JavaScript</label>
+        <p>Ваш стиль гри?</p>
+        <label><input type="radio" name="q2" value="competitive" required> Граю тільки на перемогу</label>
+        <label><input type="radio" name="q2" value="fun"> Головне - веселощі</label>
+        <label><input type="radio" name="q2" value="chaos"> Люблю створювати хаос</label>
+        <label><input type="radio" name="q2" value="strategic"> Все планую наперед</label>
     </div>
 
-    <button type="submit">Проголосувати</button>
+    <div class="question">
+        <p>Що робите, коли програєте?</p>
+        <label><input type="radio" name="q3" value="analyze" required> Аналізую свої помилки</label>
+        <label><input type="radio" name="q3" value="blame"> Звинувачую везіння</label>
+        <label><input type="radio" name="q3" value="laugh"> Сміюся і йду далі</label>
+        <label><input type="radio" name="q3" value="revenge"> Планую помсту</label>
+    </div>
+
+    <div class="question">
+        <p>Найгірший тип гравця?</p>
+        <label><input type="radio" name="q4" value="cheater" required> Той, хто підглядає</label>
+        <label><input type="radio" name="q4" value="slow"> Той, хто дуже довго думає</label>
+        <label><input type="radio" name="q4" value="rules"> Той, хто постійно змінює правила</label>
+        <label><input type="radio" name="q4" value="phone"> Той, хто сидить в телефоні</label>
+    </div>
+
+    <button type="submit">🎲 Проголосувати! 🎯</button>
 </form>
 </body>
 </html>
