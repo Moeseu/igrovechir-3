@@ -1,0 +1,17 @@
+spring:
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+  datasource:
+    url: jdbc:postgresql://dpg-d1993aadbo4c73d2epjg-a.frankfurt-postgres.render.com/game_stat_cr1d
+    username: user
+    password: K8WqXRBc3s2lWqJ5iL0TwIh9Nj8Dko6z
+#    url: jdbc:postgresql://localhost:5432/OOP
+#    username: postgres
+#    password: 1111

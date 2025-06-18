@@ -179,11 +179,11 @@
 
 <div class="stats-header">
     <div class="stat-card">
-        <span class="stat-number" id="totalVotes">127</span>
+        <span class="stat-number" id="totalVotes">0</span>
         <span class="stat-label">Всього голосів</span>
     </div>
     <div class="stat-card">
-        <span class="stat-number" id="totalParticipants">32</span>
+        <span class="stat-number" id="totalParticipants">0</span>
         <span class="stat-label">Учасників</span>
     </div>
     <div class="stat-card">
@@ -198,36 +198,36 @@
         <canvas id="chart1"></canvas>
     </div>
     <div class="options-grid">
-        <div class="option-card">
-            <div class="option-name">🏠 Монополія <span class="winner-badge">👑 ЛІДЕР</span></div>
-            <div class="progress-bar"><div class="progress-fill" style="width: 45%"></div></div>
+        <div class="option-card" id="q1-monopoly">
+            <div class="option-name">🏠 Монополія</div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
             <div class="option-stats">
-                <span class="vote-count">14 голосів</span>
-                <span class="percentage">45%</span>
+                <span class="vote-count">0 голосів</span>
+                <span class="percentage">0%</span>
             </div>
         </div>
-        <div class="option-card">
+        <div class="option-card" id="q1-fool">
             <div class="option-name">🃏 Дурень</div>
-            <div class="progress-bar"><div class="progress-fill" style="width: 25%"></div></div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
             <div class="option-stats">
-                <span class="vote-count">8 голосів</span>
-                <span class="percentage">25%</span>
+                <span class="vote-count">0 голосів</span>
+                <span class="percentage">0%</span>
             </div>
         </div>
-        <div class="option-card">
-            <div class="option-name">💻 JavaScript</div>
-            <div class="progress-bar"><div class="progress-fill" style="width: 19%"></div></div>
+        <div class="option-card" id="q1-js">
+            <div class="option-name">💻 JavaScript (це не гра, але все одно)</div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
             <div class="option-stats">
-                <span class="vote-count">6 голосів</span>
-                <span class="percentage">19%</span>
+                <span class="vote-count">0 голосів</span>
+                <span class="percentage">0%</span>
             </div>
         </div>
-        <div class="option-card">
+        <div class="option-card" id="q1-uno">
             <div class="option-name">🔴 UNO</div>
-            <div class="progress-bar"><div class="progress-fill" style="width: 11%"></div></div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
             <div class="option-stats">
-                <span class="vote-count">4 голоси</span>
-                <span class="percentage">11%</span>
+                <span class="vote-count">0 голосів</span>
+                <span class="percentage">0%</span>
             </div>
         </div>
     </div>
@@ -239,36 +239,36 @@
         <canvas id="chart2"></canvas>
     </div>
     <div class="options-grid">
-        <div class="option-card">
-            <div class="option-name">🎉 Головне - веселощі <span class="winner-badge">👑 ЛІДЕР</span></div>
-            <div class="progress-bar"><div class="progress-fill" style="width: 38%"></div></div>
-            <div class="option-stats">
-                <span class="vote-count">12 голосів</span>
-                <span class="percentage">38%</span>
-            </div>
-        </div>
-        <div class="option-card">
+        <div class="option-card" id="q2-competitive">
             <div class="option-name">🏆 Граю тільки на перемогу</div>
-            <div class="progress-bar"><div class="progress-fill" style="width: 28%"></div></div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
             <div class="option-stats">
-                <span class="vote-count">9 голосів</span>
-                <span class="percentage">28%</span>
+                <span class="vote-count">0 голосів</span>
+                <span class="percentage">0%</span>
             </div>
         </div>
-        <div class="option-card">
-            <div class="option-name">🧠 Все планую наперед</div>
-            <div class="progress-bar"><div class="progress-fill" style="width: 22%"></div></div>
+        <div class="option-card" id="q2-fun">
+            <div class="option-name">🎉 Головне - веселощі</div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
             <div class="option-stats">
-                <span class="vote-count">7 голосів</span>
-                <span class="percentage">22%</span>
+                <span class="vote-count">0 голосів</span>
+                <span class="percentage">0%</span>
             </div>
         </div>
-        <div class="option-card">
+        <div class="option-card" id="q2-chaos">
             <div class="option-name">🌪️ Люблю створювати хаос</div>
-            <div class="progress-bar"><div class="progress-fill" style="width: 12%"></div></div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
             <div class="option-stats">
-                <span class="vote-count">4 голоси</span>
-                <span class="percentage">12%</span>
+                <span class="vote-count">0 голосів</span>
+                <span class="percentage">0%</span>
+            </div>
+        </div>
+        <div class="option-card" id="q2-strategic">
+            <div class="option-name">🧠 Все планую наперед</div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
+            <div class="option-stats">
+                <span class="vote-count">0 голосів</span>
+                <span class="percentage">0%</span>
             </div>
         </div>
     </div>
@@ -280,36 +280,36 @@
         <canvas id="chart3"></canvas>
     </div>
     <div class="options-grid">
-        <div class="option-card">
-            <div class="option-name">😄 Сміюся і йду далі <span class="winner-badge">👑 ЛІДЕР</span></div>
-            <div class="progress-bar"><div class="progress-fill" style="width: 41%"></div></div>
-            <div class="option-stats">
-                <span class="vote-count">13 голосів</span>
-                <span class="percentage">41%</span>
-            </div>
-        </div>
-        <div class="option-card">
+        <div class="option-card" id="q3-analyze">
             <div class="option-name">🔍 Аналізую свої помилки</div>
-            <div class="progress-bar"><div class="progress-fill" style="width: 28%"></div></div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
             <div class="option-stats">
-                <span class="vote-count">9 голосів</span>
-                <span class="percentage">28%</span>
+                <span class="vote-count">0 голосів</span>
+                <span class="percentage">0%</span>
             </div>
         </div>
-        <div class="option-card">
+        <div class="option-card" id="q3-blame">
             <div class="option-name">🎲 Звинувачую везіння</div>
-            <div class="progress-bar"><div class="progress-fill" style="width: 19%"></div></div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
             <div class="option-stats">
-                <span class="vote-count">6 голосів</span>
-                <span class="percentage">19%</span>
+                <span class="vote-count">0 голосів</span>
+                <span class="percentage">0%</span>
             </div>
         </div>
-        <div class="option-card">
-            <div class="option-name">😈 Планую помсту</div>
-            <div class="progress-bar"><div class="progress-fill" style="width: 12%"></div></div>
+        <div class="option-card" id="q3-laugh">
+            <div class="option-name">😄 Сміюся і йду далі</div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
             <div class="option-stats">
-                <span class="vote-count">4 голоси</span>
-                <span class="percentage">12%</span>
+                <span class="vote-count">0 голосів</span>
+                <span class="percentage">0%</span>
+            </div>
+        </div>
+        <div class="option-card" id="q3-revenge">
+            <div class="option-name">😈 Планую помсту</div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
+            <div class="option-stats">
+                <span class="vote-count">0 голосів</span>
+                <span class="percentage">0%</span>
             </div>
         </div>
     </div>
@@ -321,44 +321,178 @@
         <canvas id="chart4"></canvas>
     </div>
     <div class="options-grid">
-        <div class="option-card">
-            <div class="option-name">📱 Той, хто сидить в телефоні <span class="winner-badge">👑 ЛІДЕР</span></div>
-            <div class="progress-bar"><div class="progress-fill" style="width: 34%"></div></div>
-            <div class="option-stats">
-                <span class="vote-count">11 голосів</span>
-                <span class="percentage">34%</span>
-            </div>
-        </div>
-        <div class="option-card">
+        <div class="option-card" id="q4-cheater">
             <div class="option-name">👀 Той, хто підглядає</div>
-            <div class="progress-bar"><div class="progress-fill" style="width: 31%"></div></div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
             <div class="option-stats">
-                <span class="vote-count">10 голосів</span>
-                <span class="percentage">31%</span>
+                <span class="vote-count">0 голосів</span>
+                <span class="percentage">0%</span>
             </div>
         </div>
-        <div class="option-card">
+        <div class="option-card" id="q4-slow">
             <div class="option-name">⏰ Той, хто дуже довго думає</div>
-            <div class="progress-bar"><div class="progress-fill" style="width: 22%"></div></div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
             <div class="option-stats">
-                <span class="vote-count">7 голосів</span>
-                <span class="percentage">22%</span>
+                <span class="vote-count">0 голосів</span>
+                <span class="percentage">0%</span>
             </div>
         </div>
-        <div class="option-card">
+        <div class="option-card" id="q4-rules">
             <div class="option-name">📋 Той, хто постійно змінює правила</div>
-            <div class="progress-bar"><div class="progress-fill" style="width: 13%"></div></div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
             <div class="option-stats">
-                <span class="vote-count">4 голоси</span>
-                <span class="percentage">13%</span>
+                <span class="vote-count">0 голосів</span>
+                <span class="percentage">0%</span>
+            </div>
+        </div>
+        <div class="option-card" id="q4-phone">
+            <div class="option-name">📱 Той, хто сидить в телефоні</div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
+            <div class="option-stats">
+                <span class="vote-count">0 голосів</span>
+                <span class="percentage">0%</span>
             </div>
         </div>
     </div>
 </div>
 
-<!--<a href="/vote" class="back-button">🎲 Проголосувати ще раз </a>-->
+<a href="/vote" class="back-button">🎲 Проголосувати ще раз 🎯</a>
 
 <script>
+    // Мапа назв варіантів для зручності
+    const optionNames = {
+        q1: {
+            monopoly: '🏠 Монополія',
+            fool: '🃏 Дурень',
+            js: '💻 JavaScript',
+            uno: '🔴 UNO'
+        },
+        q2: {
+            competitive: '🏆 На перемогу',
+            fun: '🎉 Веселощі',
+            chaos: '🌪️ Хаос',
+            strategic: '🧠 Планування'
+        },
+        q3: {
+            analyze: '🔍 Аналізую',
+            blame: '🎲 Звинувачую',
+            laugh: '😄 Сміюся',
+            revenge: '😈 Помста'
+        },
+        q4: {
+            cheater: '👀 Підглядає',
+            slow: '⏰ Довго думає',
+            rules: '📋 Змінює правила',
+            phone: '📱 В телефоні'
+        }
+    };
+
+    // Функція для оновлення результатів з сервера
+    async function loadVotingResults() {
+        try {
+            // Завантажуємо дані з сервера
+            const response = await fetch('/api/voting-results');
+            const data = await response.json();
+
+            updateStatistics(data);
+            updateQuestionResults(data);
+            createCharts(data);
+
+        } catch (error) {
+            console.error('Помилка завантаження результатів:', error);
+            // Показуємо порожні результати при помилці
+            showEmptyResults();
+        }
+    }
+
+    // Функція оновлення статистики
+    function updateStatistics(data) {
+        document.getElementById('totalVotes').textContent = data.totalVotes || 0;
+        document.getElementById('totalParticipants').textContent = data.totalParticipants || 0;
+    }
+
+    // Функція оновлення результатів питань
+    function updateQuestionResults(data) {
+        ['q1', 'q2', 'q3', 'q4'].forEach(questionId => {
+            const questionData = data.questions[questionId];
+            if (questionData) {
+                updateQuestion(questionId, questionData);
+            }
+        });
+    }
+
+    // Функція оновлення конкретного питання
+    function updateQuestion(questionId, questionData) {
+        const totalVotes = Object.values(questionData).reduce((sum, count) => sum + count, 0);
+
+        // Знаходимо лідера
+        let maxVotes = 0;
+        let leader = null;
+        Object.entries(questionData).forEach(([option, votes]) => {
+            if (votes > maxVotes) {
+                maxVotes = votes;
+                leader = option;
+            }
+        });
+
+        Object.entries(questionData).forEach(([option, votes]) => {
+            const percentage = totalVotes > 0 ? Math.round((votes / totalVotes) * 100) : 0;
+            const cardId = `${questionId}-${option}`;
+            const card = document.getElementById(cardId);
+
+            if (card) {
+                // Оновлюємо прогрес-бар
+                const progressFill = card.querySelector('.progress-fill');
+                progressFill.style.width = percentage + '%';
+
+                // Оновлюємо кількість голосів
+                const voteCount = card.querySelector('.vote-count');
+                voteCount.textContent = `${votes} ${getVoteWord(votes)}`;
+
+                // Оновлюємо відсоток
+                const percentageSpan = card.querySelector('.percentage');
+                percentageSpan.textContent = percentage + '%';
+
+                // Додаємо значок лідера
+                const optionName = card.querySelector('.option-name');
+                if (option === leader && votes > 0) {
+                    if (!optionName.querySelector('.winner-badge')) {
+                        optionName.innerHTML += ' <span class="winner-badge">👑 ЛІДЕР</span>';
+                    }
+                }
+            }
+        });
+    }
+
+    // Функція для правильного відмінювання слова "голос"
+    function getVoteWord(count) {
+        if (count === 1) return 'голос';
+        if (count >= 2 && count <= 4) return 'голоси';
+        return 'голосів';
+    }
+
+    // Функція створення діаграм
+    function createCharts(data) {
+        const colors = [
+            ['#8B4513', '#A0522D', '#CD853F', '#D2B48C'],
+            ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4'],
+            ['#FFD93D', '#FF6B6B', '#6BCF7F', '#4D96FF'],
+            ['#FF4757', '#3742FA', '#2ED573', '#FFA502']
+        ];
+
+        ['q1', 'q2', 'q3', 'q4'].forEach((questionId, index) => {
+            const questionData = data.questions[questionId];
+            if (questionData) {
+                const chartData = Object.values(questionData);
+                const labels = Object.keys(questionData).map(key =>
+                    optionNames[questionId][key] || key
+                );
+
+                createChart(`chart${index + 1}`, chartData, labels, colors[index]);
+            }
+        });
+    }
+
     // Функція для створення кольорових діаграм
     function createChart(canvasId, data, labels, colors) {
         const ctx = document.getElementById(canvasId).getContext('2d');
@@ -395,20 +529,28 @@
         });
     }
 
-    // Дані для діаграм
-    const colors1 = ['#8B4513', '#A0522D', '#CD853F', '#D2B48C'];
-    const colors2 = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4'];
-    const colors3 = ['#FFD93D', '#FF6B6B', '#6BCF7F', '#4D96FF'];
-    const colors4 = ['#FF4757', '#3742FA', '#2ED573', '#FFA502'];
+    // Функція показу порожніх результатів
+    function showEmptyResults() {
+        // Створюємо порожні діаграми
+        const emptyData = [0, 0, 0, 0];
+        const colors = [
+            ['#8B4513', '#A0522D', '#CD853F', '#D2B48C'],
+            ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4'],
+            ['#FFD93D', '#FF6B6B', '#6BCF7F', '#4D96FF'],
+            ['#FF4757', '#3742FA', '#2ED573', '#FFA502']
+        ];
 
-    // Створюємо діаграми
-    createChart('chart1', [14, 8, 6, 4], ['Монополія', 'Дурень', 'JavaScript', 'UNO'], colors1);
-    createChart('chart2', [12, 9, 7, 4], ['Веселощі', 'На перемогу', 'Планування', 'Хаос'], colors2);
-    createChart('chart3', [13, 9, 6, 4], ['Сміюся', 'Аналізую', 'Звинувачую везіння', 'Планую помсту'], colors3);
-    createChart('chart4', [11, 10, 7, 4], ['В телефоні', 'Підглядає', 'Довго думає', 'Змінює правила'], colors4);
+        ['q1', 'q2', 'q3', 'q4'].forEach((questionId, index) => {
+            const labels = Object.values(optionNames[questionId]);
+            createChart(`chart${index + 1}`, emptyData, labels, colors[index]);
+        });
+    }
 
-    // Анімація появи прогрес-барів
+    // Завантажуємо результати при завантаженні сторінки
     window.addEventListener('load', function() {
+        loadVotingResults();
+
+        // Анімація появи прогрес-барів
         const progressBars = document.querySelectorAll('.progress-fill');
         progressBars.forEach((bar, index) => {
             setTimeout(() => {
@@ -416,6 +558,9 @@
             }, index * 100);
         });
     });
+
+    // Автооновлення результатів кожні 30 секунд
+    setInterval(loadVotingResults, 30000);
 </script>
 </body>
 </html>
