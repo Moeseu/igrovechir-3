@@ -181,5 +181,25 @@
 
     <button type="submit">🎲 Проголосувати! 🎯</button>
 </form>
+    <script>
+        function validateForm() {
+            const questions = ['q1', 'q2', 'q3', 'q4'];
+            for (let i = 0; i < questions.length; i++) {
+                const radios = document.getElementsByName(questions[i]);
+                let isChecked = false;
+                for (let j = 0; j < radios.length; j++) {
+                    if (radios[j].checked) {
+                        isChecked = true;
+                        break;
+                    }
+                }
+                if (!isChecked) {
+                    alert('Будь ласка, оберіть відповідь на всі питання.');
+                    return false;
+                }
+            }
+            return true;
+        }
+    </script>
 </body>
 </html>

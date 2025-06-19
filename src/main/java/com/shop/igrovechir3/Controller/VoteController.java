@@ -5,15 +5,14 @@ import com.shop.igrovechir3.Repository.VoteRepository;
 import com.shop.igrovechir3.model.Vote;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody; // Import for @ResponseBody
 
-import java.util.HashMap;
 import java.util.LinkedHashMap; // For ordered map in JSON output
 import java.util.Map;
+import java.util.Set;
 
 @Controller
 public class VoteController {
@@ -31,6 +30,19 @@ public class VoteController {
   @PostMapping("/vote")
   public String submitVote(@RequestParam String q1, @RequestParam String q2,
                            @RequestParam String q3, @RequestParam String q4) { // Додано параметри q3 та q4
+    Set<String> q1AllowedOptions = Set.of("monopoly", "fool", "js", "uno");
+    Set<String> q2AllowedOptions = Set.of("competitive", "fun", "chaos", "strategic");
+    Set<String> q3AllowedOptions = Set.of("analyze", "blame", "laugh", "revenge");
+    Set<String> q4AllowedOptions = Set.of("cheater", "slow", "rules", "phone");
+
+    if (!q1AllowedOptions.contains(q1) ||
+        !q2AllowedOptions.contains(q2) ||
+        !q3AllowedOptions.contains(q3) ||
+        !q4AllowedOptions.contains(q4)) {
+      // Log the invalid attempt
+      // You might redirect to an error page or back to the form with a message
+      return "redirect:/error?message=Invalid vote options";
+    }
     // Зберігаємо відповідь на перше питання
     Vote vote1 = new Vote();
     vote1.setQuestionId("q1");
